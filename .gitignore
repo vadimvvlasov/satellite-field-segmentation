@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
+
+# Virtual env
+.venv/
+venv/
+env/
+uv.lock
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data (large files, managed separately)
+data/*.tif
+data/*.tiff
+data/*.nc
+data/*.zip
+data/raw/
+data/processed/
+!data/.gitkeep
+!data/README.md
+!data/download.sh
+
+# Model checkpoints
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+runs/
+output/
+
+# Docker
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp
+*.log
+tmp/

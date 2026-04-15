@@ -1,0 +1,68 @@
+# Training configuration for ResUNet-A field boundary segmentation
+
+seed: 42
+
+# Paths
+data:
+  train_dir: data/processed/train
+  val_dir: data/processed/val
+  bands:
+    - B02  # Blue
+    - B03  # Green
+    - B04  # Red
+    - B08  # NIR
+
+# Model
+model:
+  name: resunet-a
+  backbone: resnet34
+  heads:
+    - extent
+    - boundary
+    - distance
+  input_channels: 4
+  tile_size: 256
+
+# Training
+training:
+  epochs: 100
+  batch_size: 16
+  num_workers: 4
+  optimizer: adamw
+  lr: 1.0e-3
+  weight_decay: 1.0e-4
+  scheduler: cosine_annealing
+  warmup_epochs: 5
+
+# Loss weights
+loss:
+  extent: 1.0
+  boundary: 2.0
+  distance: 0.5
+
+# Augmentation
+augmentations:
+  random_rotate: true
+  random_flip: true
+  color_jitter: 0.1
+  cloud_mask: true
+
+# Validation
+validation:
+  metrics:
+    - iou
+    - mcc
+    - f1
+  fold_cv: 5
+
+# Checkpointing
+checkpoint:
+  dir: checkpoints
+  save_every: 10
+  best_metric: mcc
+
+# Logging
+logging:
+  log_dir: runs
+  tensorboard: true
+  log_every: 50

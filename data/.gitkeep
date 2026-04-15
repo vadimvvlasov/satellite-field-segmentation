@@ -1,0 +1,2 @@
+# Raw and processed data files are stored here.
+# Run `bash data/download.sh` to populate this directory.
